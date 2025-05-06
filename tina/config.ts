@@ -32,6 +32,7 @@ export default defineConfig({
         name: "page",
         label: "Page",
         path: "content/pages",
+        format: "md",
         ui: {
           router: (props) => {
             return "/"
@@ -63,6 +64,15 @@ export default defineConfig({
                     label: "Links",
                     type: "object",
                     list: true,
+                    ui: {
+                      itemProps: (item) => {
+                        return { label: item.label }
+                      },
+                      defaultItem: {
+                        label: "new link",
+                        link: "/"
+                      },
+                    },
                     fields: [
                       {type: "string", name: "label", label: "Label"},
                       {type: "string", name: "link", label: "Link"},
@@ -75,7 +85,49 @@ export default defineConfig({
                     ]
                   }
                 ]
-              }
+              },
+              {
+              name: "feature",
+              label: "Feature",
+              fields: [
+                {
+                  name: "message",
+                  label: "Message",
+                  type: "rich-text",
+                },
+                {
+                  name: "cards",
+                  label: "Cards",
+                  type: "object",
+                  list: true,
+                  ui: {
+                    itemProps: (item) => {
+                      return { label: item.label }
+                    },
+                    defaultItem: {
+                      icon: "shield",
+                      label: "new card",
+                      description: "This is a new card",
+                    },
+                  },
+                  fields: [
+                    {
+                      type: "string",
+                      name: "icon",
+                      label: "Icon",},
+                    { type: "string", name: "label", label: "Label" },
+                    {
+                      type: "string",
+                      name: "description",
+                      label: "Description",
+                      ui: {
+                        component: "textarea",
+                      },
+                    },
+                  ],
+                },
+              ],
+            },
             ]
           }
         ]
