@@ -6,8 +6,9 @@ import { tinaField } from "tinacms/dist/react";
 const Hero = (props: PageBlocksHero) => {
   return (
     <div
+      data-tina-field={tinaField(props, "background")}
       className="hero-section h-[500px] flex items-center justify-center"
-      style={{ backgroundImage: `url('/placeholder.svg?height=800&width=1600')` }}
+      style={{ backgroundImage: `url(${props.background})` }}
     >
 
       <div className="hero-content text-center px-4" data-tina-field={tinaField(props, "message")}>

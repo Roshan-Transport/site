@@ -52,11 +52,11 @@ const Navbar = () => {
                     Cleaning
                   </Link>
                   <Link
-                    href="/services/lawn-moving"
+                    href="/services/lawn-mowing"
                     className="block px-4 py-2 text-base text-gray-700 hover:bg-gray-100"
                     onClick={() => setServicesOpen(false)}
                   >
-                    Lawn Moving
+                    Lawn Mowing
                   </Link>
                 </div>
               )}

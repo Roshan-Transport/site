@@ -35,7 +35,8 @@ export default defineConfig({
         format: "md",
         ui: {
           router: (props) => {
-            return "/"
+            if(props.document._sys.relativePath == "home.md") return "/"
+            // else if(props.document._sys.relativePath == "transport.md") return "/services/transport"
           }
         },
         fields: [
@@ -53,11 +54,27 @@ export default defineConfig({
               {
                 name: "hero",
                 label: "Hero",
+                ui: {
+                  itemProps: (item) => {
+                    return { label: item.label }
+                  }
+                },
                 fields: [
+                  {
+                    type: "string",
+                    name: "label",
+                    label: "Label",
+                    options: ["Hero", "About", "Call to Action", "Feature"],
+                  },
                   {
                     name: "message",
                     label: "Message",
                     type: "rich-text",
+                  },
+                  {
+                    name:"background",
+                    label: "Background Image",
+                    type: "image",
                   },
                   {
                     name: "links",
@@ -80,7 +97,7 @@ export default defineConfig({
                         type: "string",
                         name: "style",
                         label: "Style",
-                        options: ["cta-button", "secondary-button"],
+                        options: ["cta-button", "secondary-button","negative-button"],
                       }
                     ]
                   }
@@ -126,6 +143,50 @@ export default defineConfig({
                     },
                   ],
                 },
+              ],
+            },
+            {
+              name: "serivces",
+              label: "Services",
+              fields: [
+                {
+                  name: "message",
+                  label: "Message",
+                  type: "rich-text",
+                },
+                {
+                  name: "card",
+                  label: "Card",
+                  type: "object",
+                  list: true,
+                  ui: {
+                    itemProps: (item) => {
+                      return { label: item.label }
+                    }
+                  },
+                  fields: [
+                    {
+                      type: "string",
+                      name: "label",
+                      label: "Label"
+                    },
+                    {
+                      name: "message",
+                      label: "Message",
+                      type: "string",
+                    },
+                    {
+                      name:"background",
+                      label: "Background Image",
+                      type: "image",
+                    },
+                    {
+                      name: "links",
+                      label: "Links",
+                      type: "string"
+                    }
+                  ]
+                },                
               ],
             },
             ]

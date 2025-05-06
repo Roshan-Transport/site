@@ -12,17 +12,6 @@ const Footer = () => {
             <p className="mb-4">
               Providing quality transport, cleaning, and lawn moving services for NDIS participants across Melbourne.
             </p>
-            <div className="flex space-x-4">
-              <a href="#" className="text-white hover:text-amber-500">
-                <Facebook />
-              </a>
-              <a href="#" className="text-white hover:text-amber-500">
-                <Instagram />
-              </a>
-              <a href="#" className="text-white hover:text-amber-500">
-                <Linkedin />
-              </a>
-            </div>
           </div>
 
           <div>

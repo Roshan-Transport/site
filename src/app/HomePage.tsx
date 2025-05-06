@@ -5,10 +5,9 @@ import Link from "next/link";
 import Hero from "@/components/hero";
 import ServiceCard from "@/components/service-card";
 import { useTina } from "tinacms/dist/react";
-import { PageBlocksFeature, PageQuery, PageQueryVariables } from "../../tina/__generated__/types";
+import { PageBlocksFeature, PageBlocksHero, PageBlocksSerivces, PageQuery, PageQueryVariables } from "../../tina/__generated__/types";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
 import { tinaField } from "tinacms/dist/react";
-import { group } from "console";
 
 
 export default function HomePage(props: { data: PageQuery; query: string; variables: PageQueryVariables }) {
@@ -17,24 +16,163 @@ export default function HomePage(props: { data: PageQuery; query: string; variab
 
   return (
     <div>
-      {data.page.blocks?.map((block,i) => {
+      {data.page.blocks?.map((block,i) => {        
         switch (block?.__typename) {
           case "PageBlocksHero":
-            return <Hero key={i} {...block} />;
+            if (block.label === "Hero") {
+              return <Hero key={i} {...block} />;
+            } else if (block.label === "About") {
+              return <AboutSection key={i} {...block} />;
+            } else if (block.label === "Call to Action") {
+              return <CTASection key={i} {...block} />;
+            }
+            break;
+        
+          case "PageBlocksFeature":
+            return <WhyChooseUsSection key={i} {...block} />;
 
-        case "PageBlocksFeature":
-          return <WhyChooseUsSection key={i} {...block} />;        
-
-
+          case "PageBlocksSerivces":
+            return <ServicesSection key={i} {...block} />;
+        
+          default:
+            return null;
         }
       })}
-      <AboutSection />
-      <ServicesSection />
-      <WhyChooseUsSection />
-      <CTASection />
     </div>
   );
 }
+
+function WhyChooseUsSection(props: PageBlocksFeature) {
+  return (
+    <section className="py-16 bg-gray-50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div data-tina-field={tinaField(props, "message")}>
+      <TinaMarkdown 
+        content={props.message}
+        components={{
+          h2: (props?: { children: React.ReactNode }) => props ? <h2 className="section-title" {...props}/> : null,
+        }}
+      />
+      </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mt-8">
+        {props.cards?.map((card, i) => {
+          return (
+            <div key={i} className="bg-white p-6 rounded-lg shadow-md"  data-tina-field={tinaField(card,"label")}>
+            <div className="w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center mb-4 mx-auto">
+              {card && card.icon && featuredIcon[card.icon as keyof typeof featuredIcon]}
+            </div>
+            <h3 className="text-xl font-bold text-center mb-2">{card?.label}</h3>
+            <p className="text-gray-600 text-center">
+              {card?.description}
+            </p>
+          </div>
+          );
+        })}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function AboutSection(props: PageBlocksHero) {
+  return (
+    <section className="py-16 bg-gray-50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" data-tina-field={tinaField(props, "message")}>
+        <div>   
+          <TinaMarkdown 
+            content={props.message}
+            components={{
+              h2: (props?: { children: React.ReactNode }) => (props ? <h2 className="section-title" {...props} /> : null),
+              p: (props?: { children: React.ReactNode }) => (props ? <p className="hidden" {...props}/> : null),
+            }}/>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+          <div>
+            <TinaMarkdown 
+              content={props.message}
+              components={{
+                h2: (props?: { children: React.ReactNode }) => (props ? <h2 className="hidden" {...props} /> : null),
+                p: (props?: { children: React.ReactNode }) => props ? <p className="text-lg mb-4" {...props}/> : null,
+              }}
+            />
+          </div>
+          <div className="relative h-80 rounded-lg overflow-hidden shadow-xl"  data-tina-field={tinaField(props, "background")}>
+            <Image
+              src={props.background || ""}
+              alt="About RoshanTransport"
+              fill
+              style={{ objectFit: "cover" }}
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function ServicesSection(props: PageBlocksSerivces) {
+  return (
+    <section className="py-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div data-tina-field={tinaField(props, "message")}>
+          <TinaMarkdown 
+            content={props.message}
+            components={{
+              h2: (props?: { children: React.ReactNode }) => (props ? <h2 className="section-title" {...props} /> : null),
+              p: (props?: { children: React.ReactNode }) => (props ? <p className="text-lg text-center text-gray-600 mb-12 max-w-3xl mx-auto" {...props}/> : null),
+            }}/>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {props.card?.map((card, i) => {
+              return (
+                <div data-tina-field={tinaField(card, "label")} key={i}>
+                <ServiceCard
+                  title={card?.label || "Service Title"}
+                  description={card?.message || "Service Description"}
+                  imageSrc={card?.background || "/placeholder.svg?height=400&width=600"}
+                  link={card?.links || "#"}
+                />
+                </div>
+              );
+            })}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function CTASection(props: PageBlocksHero) {
+  return (
+    <section className="py-16 bg-amber-500 text-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div data-tina-field={tinaField(props, "message")}>   
+          <TinaMarkdown 
+            content={props.message}
+            components={{
+              h2: (props?: { children: React.ReactNode }) => (props ? <h2 className="text-3xl md:text-4xl font-bold mb-6" {...props} /> : null),
+              p: (props?: { children: React.ReactNode }) => (props ? <p className="text-xl mb-8 max-w-3xl mx-auto" {...props}/> : null),
+            }}/>
+        </div>
+        <div className="flex flex-col sm:flex-row justify-center gap-4">
+          {props?.links?.map((link, i) => {
+            return (
+              <Link
+                key={i}
+                href={link?.link || "#"}
+                className={link?.style || ""}
+                data-tina-field={tinaField(link, "label")}
+              >
+                {link?.label}
+              </Link>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 
 const featuredIcon = {
   shield: (<svg
@@ -93,132 +231,4 @@ const featuredIcon = {
       d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
     />
   </svg>),
-}
-
-function WhyChooseUsSection(props: PageBlocksFeature) {
-  return (
-    <section className="py-16 bg-gray-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div data-tina-field={tinaField(props, "message")}>
-      <TinaMarkdown 
-        content={props.message}
-        components={{
-          h2: (props?: { children: React.ReactNode }) => props ? <h2 className="section-title" {...props}/> : null,
-        }}
-      />
-      </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mt-8">
-        {props.cards?.map((card, i) => {
-          return (
-            <div key={i} className="bg-white p-6 rounded-lg shadow-md"  data-tina-field={tinaField(card,"label")}>
-            <div className="w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center mb-4 mx-auto">
-              {card && card.icon && featuredIcon[card.icon as keyof typeof featuredIcon]}
-            </div>
-            <h3 className="text-xl font-bold text-center mb-2">{card?.label}</h3>
-            <p className="text-gray-600 text-center">
-              {card?.description}
-            </p>
-          </div>
-          );
-        })}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function AboutSection() {
-  return (
-    <section className="py-16 bg-gray-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="section-title">Welcome to RoshanTransport</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-          <div>
-            <p className="text-lg mb-4">
-              RoshanTransport is a registered NDIS provider (Registration Number: 22416853) dedicated to delivering
-              high-quality transport, cleaning, and lawn moving services to NDIS participants across Melbourne.
-            </p>
-            <p className="text-lg mb-4">
-              Our mission is to enhance the independence and quality of life for people with disabilities by providing
-              reliable, accessible, and personalized services that meet their unique needs.
-            </p>
-            <p className="text-lg mb-6">
-              With a team of experienced professionals and a fleet of specially equipped vehicles, we ensure safe,
-              comfortable, and timely transportation for all our clients.
-            </p>
-          </div>
-          <div className="relative h-80 rounded-lg overflow-hidden shadow-xl">
-            <Image
-              src="/placeholder.svg?height=600&width=800"
-              alt="About RoshanTransport"
-              fill
-              style={{ objectFit: "cover" }}
-            />
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function ServicesSection() {
-  return (
-    <section className="py-16">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="section-title">Our Services</h2>
-        <p className="text-lg text-center text-gray-600 mb-12 max-w-3xl mx-auto">
-          We offer a comprehensive range of services designed to support NDIS participants in their daily lives. All
-          our services are NDIS-approved and can be included in your NDIS plan.
-        </p>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <ServiceCard
-            title="Transport Services"
-            description="Safe and reliable transportation for medical appointments, social activities, and daily needs."
-            imageSrc="/placeholder.svg?height=400&width=600"
-            link="/services/transport"
-          />
-
-          <ServiceCard
-            title="Cleaning Services"
-            description="Professional cleaning services tailored to meet the specific needs of NDIS participants."
-            imageSrc="/placeholder.svg?height=400&width=600"
-            link="/services/cleaning"
-          />
-
-          <ServiceCard
-            title="Lawn Moving Services"
-            description="Comprehensive lawn care and garden maintenance services to keep your outdoor spaces beautiful."
-            imageSrc="/placeholder.svg?height=400&width=600"
-            link="/services/lawn-moving"
-          />
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function CTASection() {
-  return (
-    <section className="py-16 bg-amber-500 text-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to Book Your Service?</h2>
-        <p className="text-xl mb-8 max-w-3xl mx-auto">
-          Contact us today to schedule your transport, cleaning, or lawn moving service. We're here to help you live
-          more independently.
-        </p>
-        <div className="flex flex-col sm:flex-row justify-center gap-4">
-          <Link
-            href="/booking"
-            className="bg-white text-amber-500 hover:bg-gray-100 font-bold py-3 px-6 rounded-md transition-all duration-300"
-          >
-            Book Now
-          </Link>
-          <Link href="/contact" className="secondary-button">
-            Contact Us
-          </Link>
-        </div>
-      </div>
-    </section>
-  );
 }
