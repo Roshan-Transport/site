@@ -1,4 +1,3 @@
-import Hero from "@/components/hero"
 import BookingForm from "@/components/booking-form"
 import Link from "next/link"
 import Image from "next/image"
@@ -6,12 +5,6 @@ import Image from "next/image"
 export default function CleaningPage() {
   return (
     <div>
-      {/* <Hero
-        title="NDIS CLEANING SERVICES"
-        subtitle="Professional Cleaning for NDIS Participants"
-        backgroundImage="/placeholder.svg?height=800&width=1600"
-      /> */}
-
       {/* Overview Section */}
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

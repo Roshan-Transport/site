@@ -36,7 +36,7 @@ export default defineConfig({
         ui: {
           router: (props) => {
             if(props.document._sys.relativePath == "home.md") return "/"
-            // else if(props.document._sys.relativePath == "transport.md") return "/services/transport"
+            else if(props.document._sys.relativePath == "transport.md") return "/services/transport"
           }
         },
         fields: [
@@ -106,7 +106,18 @@ export default defineConfig({
               {
               name: "feature",
               label: "Feature",
+              ui: {
+                itemProps: (item) => {
+                  return { label: item.label }
+                }
+              },
               fields: [
+                {
+                  type: "string",
+                  name: "label",
+                  label: "Label",
+                  options: ["Feature4", "Feature3", "Feature2", "Feature"],
+                },
                 {
                   name: "message",
                   label: "Message",
@@ -174,6 +185,11 @@ export default defineConfig({
                       name: "message",
                       label: "Message",
                       type: "string",
+                    },                    
+                    {
+                      type: "rich-text",
+                      name: "points",
+                      label: "Points"
                     },
                     {
                       name:"background",

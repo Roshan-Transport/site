@@ -1,4 +1,3 @@
-import Hero from "@/components/hero"
 import BookingForm from "@/components/booking-form"
 import Link from "next/link"
 import Image from "next/image"
@@ -6,11 +5,6 @@ import Image from "next/image"
 export default function LawnMovingPage() {
   return (
     <div>
-      {/* <Hero
-        title="NDIS LAWN MOVING SERVICES"
-        subtitle="Professional Garden Maintenance for NDIS Participants"
-        backgroundImage="/placeholder.svg?height=800&width=1600"
-      /> */}
 
       {/* Overview Section */}
       <section className="py-16">

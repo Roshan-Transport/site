@@ -62,7 +62,8 @@ blocks:
         background: /background4.jpeg
         links: /services/lawn-mowing
     _template: serivces
-  - message: |
+  - label: Feature
+    message: |
       ## Why Choose RoshanTransport
     cards:
       - icon: shield
