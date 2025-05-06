@@ -37,6 +37,8 @@ export default defineConfig({
           router: (props) => {
             if(props.document._sys.relativePath == "home.md") return "/"
             else if(props.document._sys.relativePath == "transport.md") return "/services/transport"
+            else if(props.document._sys.relativePath == "cleaning.md") return "/services/cleaning"
+            else if(props.document._sys.relativePath == "lawnmowing.md") return "/services/lawn-mowing"
           }
         },
         fields: [
