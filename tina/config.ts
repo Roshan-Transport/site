@@ -39,6 +39,8 @@ export default defineConfig({
             else if(props.document._sys.relativePath == "transport.md") return "/services/transport"
             else if(props.document._sys.relativePath == "cleaning.md") return "/services/cleaning"
             else if(props.document._sys.relativePath == "lawnmowing.md") return "/services/lawn-mowing"
+            else if(props.document._sys.relativePath == "booking.md") return "/booking"
+            else if(props.document._sys.relativePath == "contact.md") return "/contact"
           }
         },
         fields: [
@@ -207,6 +209,37 @@ export default defineConfig({
                 },                
               ],
             },
+            {
+              name: "contact",
+              label: "Contact",
+              fields: [
+                {
+                  name: "message",
+                  label: "Message",
+                  type: "rich-text",
+                },
+                {
+                  name: "email",
+                  label: "Email",
+                  type: "string",
+                },
+                {
+                  name: "phone",
+                  label: "Phone",
+                  type: "string",
+                },
+                {
+                  name: "address",
+                  label: "Address",
+                  type: "rich-text",
+                },
+                {
+                  name: "hours",
+                  label: "Hours",
+                  type: "rich-text"
+                }
+              ]
+            }
             ]
           }
         ]
