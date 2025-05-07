@@ -4,9 +4,13 @@ import { useState } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { Menu, X, ChevronDown, Phone } from "lucide-react"
-import logo from "../../public/placeholder.svg"
+import { tinaField, useTina } from "tinacms/dist/react"
+import { NavQuery, NavQueryVariables } from "../../tina/__generated__/types"
 
-const Navbar = () => {
+const Navbar = (props: { data: NavQuery; query: string; variables: NavQueryVariables }) => {
+
+  const {data} = useTina(props)
+  const info = data.nav
   const [isOpen, setIsOpen] = useState(false)
   const [servicesOpen, setServicesOpen] = useState(false)
 
@@ -16,8 +20,8 @@ const Navbar = () => {
         <div className="flex justify-between h-20">
           <div className="flex items-center">
             <Link href="/" className="flex-shrink-0 flex items-center">
-              <div className="relative h-16 w-48">
-                <Image src={logo} alt="RoshanTransport Logo" fill style={{ objectFit: "contain" }} priority />
+              <div className="relative h-16 w-48" data-tina-field={tinaField(info, "logo")}>
+                <Image src={info.logo || "/default-logo.png"} alt="RoshanTransport Logo" fill style={{ objectFit: "contain" }} priority />
               </div>
             </Link>
           </div>
@@ -72,9 +76,9 @@ const Navbar = () => {
           </div>
 
           <div className="hidden md:flex items-center">
-            <a href="tel:1300XXXXXX" className="flex items-center text-amber-500 font-bold">
+            <a href={`tel:${info.phone}`} className="flex items-center text-amber-500 font-bold" data-tina-field={tinaField(info, "phone")}>
               <Phone className="mr-2 h-5 w-5" />
-              1300XXXXXX
+              {info.phone}
             </a>
           </div>
 
@@ -154,13 +158,13 @@ const Navbar = () => {
             </Link>
 
             <a
-              href="tel:1300XXXXXX"
+              href="tel:{info.phone}"
               className="block px-3 py-2 text-base font-semibold text-amber-500"
               onClick={() => setIsOpen(false)}
             >
-              <div className="flex items-center">
+              <div className="flex items-center"  data-tina-field={tinaField(info, "phone")}>
                 <Phone className="mr-2 h-5 w-5" />
-                1300XXXXXX
+                {info.phone}
               </div>
             </a>
           </div>

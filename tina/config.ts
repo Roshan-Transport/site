@@ -244,6 +244,40 @@ export default defineConfig({
           }
         ]
       },
+      {
+        name: "nav",
+        label: "Nav",
+        path: "content/nav",
+        ui: {
+          allowedActions: {
+            create: false,
+            delete: false,
+          },
+          global: true,
+        },
+        fields: [
+          {name: "logo", label: "Logo", type: "image"},
+          {name: "phone", label: "Phone", type: "string"},
+        ]
+      },
+      {
+        name: "footer",
+        label: "Footer",
+        path: "content/footer",
+        ui: {
+          allowedActions: {
+            create: false,
+            delete: false,
+          },
+          global: true,
+        },
+        fields: [
+          {name: "message", label: "Message", type: "rich-text"},
+          {name: "phone", label: "Phone", type: "string"},
+          {name: "email", label: "Email", type: "string"},
+          {name: "address", label: "Address", type: "string"},
+        ]
+      }
     ],
   },
 });

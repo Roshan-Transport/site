@@ -1,19 +1,27 @@
+"use client"
+
 import Link from "next/link"
 import { Phone, Mail, MapPin, Facebook, Instagram, Linkedin } from "lucide-react"
+import { FooterQuery, FooterQueryVariables } from "../../tina/__generated__/types";
+import { tinaField, useTina } from "tinacms/dist/react";
+import { TinaMarkdown } from "tinacms/dist/rich-text";
 
-const Footer = () => {
+const Footer = (props: { data: FooterQuery; query: string; variables: FooterQueryVariables }) =>{
+
+   const {data} = useTina(props)
+   const info = data.footer
   return (
     <footer className="bg-gray-800 text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div>
-            <h3 className="text-xl font-bold mb-4">RoshanTransport</h3>
-            <p className="mb-4">NDIS Provider Registration Number: 22416853</p>
-            <p className="mb-4">
-              Providing quality transport, cleaning, and lawn moving services for NDIS participants across Melbourne.
-            </p>
+          <div  data-tina-field={tinaField(info, "message")}>
+            <TinaMarkdown
+                        content={info.message}
+                        components={{
+                          h3: (info?: { children: React.ReactNode }) => (info ? <h3 className="text-xl font-bold mb-4" {...info} /> : null),
+                          p: (info?: { children: React.ReactNode }) => (info ? <p className="mb-4" {...info}/> : null),
+                        }}/>
           </div>
-
           <div>
             <h3 className="text-xl font-bold mb-4">Our Services</h3>
             <ul className="space-y-2">
@@ -45,19 +53,19 @@ const Footer = () => {
             <ul className="space-y-2">
               <li className="flex items-center">
                 <Phone className="mr-2 h-5 w-5 text-amber-500" />
-                <a href="tel:1300XXXXXX" className="hover:text-amber-500">
-                  1300XXXXXX
+                <a href={`tel:${info.phone}`} className="hover:text-amber-500"   data-tina-field={tinaField(info, "phone")}>
+                  {info.phone}
                 </a>
               </li>
               <li className="flex items-center">
                 <Mail className="mr-2 h-5 w-5 text-amber-500" />
-                <a href="mailto:info@roshantransport.com.au" className="hover:text-amber-500">
-                  info@roshantransport.com.au
+                <a href={`mailto:${info.email}`} className="hover:text-amber-500"  data-tina-field={tinaField(info, "email")}>
+                  {info.email}
                 </a>
               </li>
               <li className="flex items-start">
                 <MapPin className="mr-2 h-5 w-5 text-amber-500 mt-1" />
-                <span>Melbourne, Victoria, Australia</span>
+                <span  data-tina-field={tinaField(info, "message")}>{info.address}</span>
               </li>
             </ul>
           </div>
