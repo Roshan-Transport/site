@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import Hero from "@/components/hero";
 import ServiceCard from "@/components/service-card";
@@ -96,14 +95,13 @@ function AboutSection(props: PageBlocksHero) {
               }}
             />
           </div>
-          <div className="relative h-80 rounded-lg overflow-hidden shadow-xl"  data-tina-field={tinaField(props, "background")}>
-            <Image
-              src={`${props.background}`}
+            <div className="relative h-80 rounded-lg overflow-hidden shadow-xl" data-tina-field={tinaField(props, "background")}>
+            <img
+              src={props.background || ''}
               alt="About RoshanTransport"
-              fill
-              style={{ objectFit: "cover" }}
+              className="w-full h-full object-cover"
             />
-          </div>
+            </div>
         </div>
       </div>
     </section>
