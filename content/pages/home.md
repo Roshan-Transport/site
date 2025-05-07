@@ -33,7 +33,7 @@ blocks:
       With a team of experienced professionals and a fleet of specially equipped
       vehicles, we ensure safe, comfortable, and timely transportation for all
       our clients.
-    background: /istockphoto-1418267688-2048x2048.jpg
+    background: /background4.jpeg
     _template: hero
   - message: >
       ## Our Services
