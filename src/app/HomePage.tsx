@@ -98,7 +98,7 @@ function AboutSection(props: PageBlocksHero) {
           </div>
           <div className="relative h-80 rounded-lg overflow-hidden shadow-xl"  data-tina-field={tinaField(props, "background")}>
             <Image
-              src={props.background || ""}
+              src={`${props.background}`}
               alt="About RoshanTransport"
               fill
               style={{ objectFit: "cover" }}
@@ -130,7 +130,7 @@ function ServicesSection(props: PageBlocksSerivces) {
                 <ServiceCard
                   title={card?.label || "Service Title"}
                   description={card?.message || "Service Description"}
-                  imageSrc={card?.background || "/placeholder.svg?height=400&width=600"}
+                  imageSrc={`${card?.background}`}
                   link={card?.links || "#"}
                 />
                 </div>

@@ -69,7 +69,7 @@ export function OverviewSection(props: PageBlocksHero) {
           </div>
           <div className="relative h-96 rounded-lg overflow-hidden shadow-xl" data-tina-field={tinaField(props, "background")}>
             <Image
-              src={props.background || "/placeholder.svg?height=500&width=800"}
+              src={`${props.background}`}
               alt="Disability Transport Service"
               fill
               style={{ objectFit: "cover" }}              
@@ -131,7 +131,7 @@ export function VehicleFleetSection(props: PageBlocksSerivces) {
             <div key={i} className="bg-white rounded-lg shadow-md overflow-hidden" data-tina-field={tinaField(card, "label")}>
             {card?.background && <div className="relative h-64">
               <Image
-                src={card?.background|| "/placeholder.svg?height=500&width=800"}
+                src={`${card.background}`}
                 alt="Wheelchair Accessible Van"
                 fill
                 style={{ objectFit: "cover" }}
