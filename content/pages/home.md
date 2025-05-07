@@ -33,7 +33,7 @@ blocks:
       With a team of experienced professionals and a fleet of specially equipped
       vehicles, we ensure safe, comfortable, and timely transportation for all
       our clients.
-    background: /background4.jpeg
+    background: /istockphoto-1418267688-2048x2048.jpg
     _template: hero
   - message: >
       ## Our Services
@@ -47,18 +47,21 @@ blocks:
         message: >-
           Safe and reliable transportation for medical appointments, social
           activities, and daily needs.
+        points: ''
         background: /background4.jpeg
         links: /services/transport
       - label: 'Cleaning Services '
         message: >-
           Professional cleaning services tailored to meet the specific needs of
           NDIS participants.
+        points: ''
         background: /background4.jpeg
         links: /services/cleaning
       - label: Lawn Mowing Services
         message: >-
           Comprehensive lawn care and garden maintenance services to keep your
           outdoor spaces beautiful.
+        points: ''
         background: /background4.jpeg
         links: /services/lawn-mowing
     _template: serivces
