@@ -133,7 +133,7 @@ const Navbar = (props: { data: NavQuery; query: string; variables: NavQueryVaria
                     Cleaning
                   </Link>
                   <Link
-                    href="/services/lawn-moving"
+                    href="/services/lawn-mowing"
                     className="block px-3 py-2 text-base font-semibold text-gray-700 hover:text-amber-500"
                     onClick={() => setIsOpen(false)}
                   >

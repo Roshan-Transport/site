@@ -5,6 +5,7 @@ import "./globals.css"
 import Navbar from "@/components/navbar"
 import Footer from "@/components/footer"
 import client from "../../tina/__generated__/client"
+import { EmailJSProvider } from "@/components/emailjs-provider"
 
 const poppins = Poppins({ subsets: ["latin"], weight: ["400" , "100" , "200" , "300" , "500" , "600" , "700" , "800" , "900"]  })
 
@@ -28,7 +29,9 @@ export default async function RootLayout({
     <html lang="en">
       <body className={poppins.className}>
         <Navbar {...dataNav}/>
+        <EmailJSProvider>
         <main>{children}</main>
+        </EmailJSProvider>
         <Footer {...datafooter}/>
       </body>
     </html>
