@@ -1,9 +1,9 @@
 "use client"
 
 import type React from "react"
-
-import { useState } from "react"
+import { useState, useRef } from "react"
 import { useRouter } from "next/navigation"
+import emailjs from "@emailjs/browser"
 
 interface BookingFormProps {
   serviceType?: "transport" | "cleaning" | "lawn-moving"
@@ -11,6 +11,7 @@ interface BookingFormProps {
 
 const BookingForm = ({ serviceType }: BookingFormProps) => {
   const router = useRouter()
+  const formRef = useRef<HTMLFormElement>(null)
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
@@ -38,29 +39,34 @@ const BookingForm = ({ serviceType }: BookingFormProps) => {
     setSubmitError("")
 
     try {
-      // In a real implementation, this would send the form data to your server
-      // For now, we'll simulate a successful submission
-      await new Promise((resolve) => setTimeout(resolve, 1000))
+      // Send email using EmailJS
+      const result = await emailjs.sendForm(
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID_BOOKING!,
+        formRef.current!,
+        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!,
+      )
 
-      setSubmitSuccess(true)
-      setFormData({
-        name: "",
-        phone: "",
-        email: "",
-        service: serviceType || "transport",
-        date: "",
-        time: "",
-        returnTrip: "no",
-        returnDate: "",
-        returnTime: "",
-        comments: "",
-      })
-
-      // Redirect to a thank you page or show a success message
-      setTimeout(() => {
-        router.push("/booking-confirmation")
-      }, 2000)
+      if (result.text === "OK") {
+        setSubmitSuccess(true)
+        setFormData({
+          name: "",
+          phone: "",
+          email: "",
+          service: serviceType || "transport",
+          date: "",
+          time: "",
+          returnTrip: "no",
+          returnDate: "",
+          returnTime: "",
+          comments: "",
+        })
+        console.log("Form submitted successfully:", formData)
+      } else {
+        throw new Error("Email failed to send")
+      }
     } catch (error) {
+      console.error("EmailJS error:", error)
       setSubmitError("There was an error submitting your booking. Please try again.")
     } finally {
       setIsSubmitting(false)
@@ -76,7 +82,7 @@ const BookingForm = ({ serviceType }: BookingFormProps) => {
           <p>Your booking has been submitted successfully! We'll contact you shortly to confirm.</p>
         </div>
       ) : (
-        <form onSubmit={handleSubmit}>
+        <form ref={formRef} onSubmit={handleSubmit}>
           {submitError && (
             <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
               <p>{submitError}</p>
