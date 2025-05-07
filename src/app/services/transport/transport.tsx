@@ -2,7 +2,6 @@
 
 import BookingForm from "@/components/booking-form"
 import Link from "next/link"
-import Image from "next/image"
 import {PageBlocksFeature, PageBlocksHero, PageBlocksSerivces, PageQuery, PageQueryVariables } from "../../../../tina/__generated__/types";
 import { tinaField, useTina } from "tinacms/dist/react";
 import { TinaMarkdown } from "tinacms/dist/rich-text"
@@ -68,11 +67,10 @@ export function OverviewSection(props: PageBlocksHero) {
         ))}
           </div>
           <div className="relative h-96 rounded-lg overflow-hidden shadow-xl" data-tina-field={tinaField(props, "background")}>
-            <Image
-              src={`${props.background}`}
+            <img
+              src={props.background || ''}
               alt="Disability Transport Service"
-              fill
-              style={{ objectFit: "cover" }}              
+              className="w-full h-full object-cover"
             />
           </div>
         </div>
@@ -130,12 +128,11 @@ export function VehicleFleetSection(props: PageBlocksSerivces) {
               return (
             <div key={i} className="bg-white rounded-lg shadow-md overflow-hidden" data-tina-field={tinaField(card, "label")}>
             {card?.background && <div className="relative h-64">
-              <Image
-                src={`${card.background}`}
+              <img
+              src={card.background || ''}
                 alt="Wheelchair Accessible Van"
-                fill
-                style={{ objectFit: "cover" }}
-              />
+              className="w-full h-full object-cover"
+            />
             </div>}
             <div className="p-6">
                 <h3 className="text-xl font-bold mb-2">{card?.label}</h3>

@@ -2,7 +2,6 @@
 
 import { useState } from "react"
 import Link from "next/link"
-import Image from "next/image"
 import { Menu, X, ChevronDown, Phone } from "lucide-react"
 import { tinaField, useTina } from "tinacms/dist/react"
 import { NavQuery, NavQueryVariables } from "../../tina/__generated__/types"
@@ -20,9 +19,12 @@ const Navbar = (props: { data: NavQuery; query: string; variables: NavQueryVaria
         <div className="flex justify-between h-20">
           <div className="flex items-center">
             <Link href="/" className="flex-shrink-0 flex items-center">
-              <div className="relative h-16 w-48" data-tina-field={tinaField(info, "logo")}>
-                <Image src={info.logo || "/default-logo.png"} alt="RoshanTransport Logo" fill style={{ objectFit: "contain" }} priority />
-              </div>
+                <img
+                src={info.logo || "/default-logo.png"}
+                alt="RoshanTransport Logo"
+                className="h-16 w-48 object-contain"
+                data-tina-field={tinaField(info, "logo")}
+                />
             </Link>
           </div>
 
