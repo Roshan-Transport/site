@@ -48,21 +48,21 @@ blocks:
           Safe and reliable transportation for medical appointments, social
           activities, and daily needs.
         points: ''
-        background: /background4.jpeg
+        background: /wmremove-transformed (2).jpeg
         links: /services/transport
       - label: 'Cleaning Services '
         message: >-
           Professional cleaning services tailored to meet the specific needs of
           NDIS participants.
         points: ''
-        background: /background4.jpeg
+        background: /wmremove-transformed (3).jpeg
         links: /services/cleaning
       - label: Lawn Mowing Services
         message: >-
           Comprehensive lawn care and garden maintenance services to keep your
           outdoor spaces beautiful.
         points: ''
-        background: /background4.jpeg
+        background: /pixnova_5c7f45a88f7ba5d1811ea0dee788bd3e.jpg
         links: /services/lawn-mowing
     _template: serivces
   - label: Feature
