@@ -21,7 +21,7 @@ blocks:
       As a registered NDIS provider (Registration Number: 22416853), our
       cleaning services can be included in your NDIS plan, making it easy and
       affordable to maintain a clean and healthy living environment.
-    background: /background4.jpeg
+    background: /wmremove-transformed%20(3).jpeg
     links:
       - label: Book Cleaning Now
         link: /booking
