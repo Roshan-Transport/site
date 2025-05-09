@@ -7,7 +7,7 @@ message: >
 
 
   Providing quality transport, cleaning, and lawn moving services for NDIS
-  participants across Melbourne.
+  participants across Brisbane.
 phone: 1300XXXXXX
 email: info@roshantransport.com.au
 address: '10 Battine Pl, Narangba, QLD 4504 Australia'
