@@ -48,12 +48,12 @@ export function OverviewSection(props: PageBlocksHero) {
     <section className="py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">  
-          <div data-tina-field={tinaField(props, "message")}>
+          <div data-tina-field={tinaField(props, "message")} className="flex flex-col items-center md:items-baseline">
           <TinaMarkdown
             content={props.message}
             components={{
               h2: (props?: { children: React.ReactNode }) => (props ? <h2 className="text-3xl font-bold mb-6" {...props} /> : null),
-              p: (props?: { children: React.ReactNode }) => (props ? <p className="text-lg mb-4" {...props}/> : null),
+              p: (props?: { children: React.ReactNode }) => (props ? <p className="text-lg mb-4 text-justify" {...props}/> : null),
             }}/>
             {props.links?.map((link, i) => (
           <Link 
