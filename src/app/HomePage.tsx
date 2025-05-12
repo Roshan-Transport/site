@@ -91,7 +91,7 @@ function AboutSection(props: PageBlocksHero) {
               content={props.message}
               components={{
                 h2: (props?: { children: React.ReactNode }) => (props ? <h2 className="hidden" {...props} /> : null),
-                p: (props?: { children: React.ReactNode }) => props ? <p className="text-lg mb-4" {...props}/> : null,
+                p: (props?: { children: React.ReactNode }) => props ? <p className="text-lg mb-4 text-justify" {...props}/> : null,
               }}
             />
           </div>
