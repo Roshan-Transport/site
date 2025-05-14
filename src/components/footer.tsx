@@ -36,7 +36,7 @@ const Footer = (props: { data: FooterQuery; query: string; variables: FooterQuer
                 </Link>
               </li>
               <li>
-                <Link href="/services/lawn-moving" className="hover:text-amber-500">
+                <Link href="/services/lawn-mowing" className="hover:text-amber-500">
                   Lawn Moving Services
                 </Link>
               </li>
