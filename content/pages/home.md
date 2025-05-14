@@ -6,7 +6,7 @@ blocks:
       # ROSHAN TRANSPORT SERVICES
 
       FOR NDIS PARTICIPANTS
-    background: /wmremove-transformed.jpeg
+    background: /wmremove-transform.jpeg
     links:
       - label: 'ONLINE BOOKING '
         link: /booking
@@ -33,7 +33,7 @@ blocks:
       With a team of experienced professionals and a fleet of specially equipped
       vehicles, we ensure safe, comfortable, and timely transportation for all
       our clients.
-    background: /wmremove-transformed (1).jpeg
+    background: /wmremove-transformed%20(1)-min%20(1).jpeg
     _template: hero
   - message: >
       ## Our Services
@@ -48,21 +48,21 @@ blocks:
           Safe and reliable transportation for medical appointments, social
           activities, and daily needs.
         points: ''
-        background: /wmremove-transformed (2).jpeg
+        background: /wmremove-transformed (2) (1) (1).jpeg
         links: /services/transport
       - label: 'Cleaning Services '
         message: >-
           Professional cleaning services tailored to meet the specific needs of
           NDIS participants.
         points: ''
-        background: /wmremove-transformed (3).jpeg
+        background: /wmremove-transformed%20(3)%20(1).jpeg
         links: /services/cleaning
       - label: Lawn Mowing Services
         message: >-
           Comprehensive lawn care and garden maintenance services to keep your
           outdoor spaces beautiful.
         points: ''
-        background: /pixnova_5c7f45a88f7ba5d1811ea0dee788bd3e.jpg
+        background: /pixnova_5c7f45a88f7ba5d1811ea0dee788bd3e%20(1).jpg
         links: /services/lawn-mowing
     _template: serivces
   - label: Feature

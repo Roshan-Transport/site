@@ -21,9 +21,7 @@ blocks:
       As a registered NDIS provider (Registration Number: 22416853), our
       transport services can be included in your NDIS plan, making it easy and
       affordable to access the transportation you need.
-
-    background: /wmremove-transformed%20(2).jpeg
-
+    background: /wmremove-transformed%20(2)%20(1)%20(1).jpeg
     links:
       - label: Book Transport Now
         link: /booking

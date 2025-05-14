@@ -21,7 +21,7 @@ blocks:
       As a registered NDIS provider (Registration Number: 22416853), our lawn
       moving services can be included in your NDIS plan, making it easy and
       affordable to maintain your outdoor spaces.
-    background: /wmremove-transformed (4).jpeg
+    background: /pixnova_5c7f45a88f7ba5d1811ea0dee788bd3e%20(1).jpg
     links:
       - label: Book Lawn Service Now
         link: /booking
